@@ -1,4 +1,4 @@
-package com;
+package com.echo;
 
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;
@@ -10,6 +10,7 @@ import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
 /**
+ * Channel链设置，String编解码，按行分割
  * Created by wuxinjian on 2017/5/22.
  */
 public class HandlerInitializer extends ChannelInitializer<SocketChannel> {

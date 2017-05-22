@@ -1,4 +1,4 @@
-package com.server;
+package com.echo.server;
 
 import io.netty.channel.*;
 
@@ -6,6 +6,7 @@ import java.net.InetAddress;
 import java.util.Date;
 
 /**
+ * echo业务处理，原样返回，遇到bye则断开连接
  * Created by wuxinjian on 2017/5/21.
  */
 public class EchoServerHandler extends SimpleChannelInboundHandler<String> {

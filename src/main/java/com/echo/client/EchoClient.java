@@ -1,4 +1,4 @@
-package com.Client;
+package com.echo.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
@@ -7,11 +7,13 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-import com.HandlerInitializer;
+import com.echo.HandlerInitializer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 /**
+ *
+ * echo 客户端，终端输入，输入bye退出连接
  * Created by wuxinjian on 2017/5/22.
  */
 public class EchoClient {
@@ -34,9 +36,9 @@ public class EchoClient {
                 if (line == null) {
                     break;
                 }
-                // Sends the received line to the com.server.
+                // Sends the received line to the com.echo.server.
                 lastWriteFuture = ch.writeAndFlush(line + "\r\n");
-                // If user typed the 'bye' command, wait until the com.server closes
+                // If user typed the 'bye' command, wait until the com.echo.server closes
                 // the connection.
                 if ("bye".equals(line.toLowerCase())) {
                     ch.closeFuture().sync();

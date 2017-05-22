@@ -16,4 +16,10 @@ public class EchoClientHandler  extends SimpleChannelInboundHandler<String> {
         cause.printStackTrace();
         ctx.close();
     }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("您已经断开连接！");
+        super.channelInactive(ctx);
+    }
 }

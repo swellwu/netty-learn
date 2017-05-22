@@ -3,11 +3,11 @@ package com.echo.client;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-import com.echo.HandlerInitializer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -24,8 +24,9 @@ public class EchoClient {
         try {
             Bootstrap b = new Bootstrap();
             b.group(group)
+                    .option(ChannelOption.TCP_NODELAY,true)
                     .channel(NioSocketChannel.class)
-                    .handler(new HandlerInitializer(new EchoClientHandler()));
+                    .handler(new ClientHandlerInitializer());
             // Start the connection attempt.
             Channel ch = b.connect(HOST, PORT).sync().channel();
             // Read commands from the stdin.

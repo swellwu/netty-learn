@@ -1,6 +1,5 @@
 package com.echo.server;
 
-import com.echo.HandlerInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -23,8 +22,9 @@ public class EchoServer {
             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG,100)
+                    .option(ChannelOption.TCP_NODELAY,true)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new HandlerInitializer(new EchoServerHandler()));
+                    .childHandler(new ServerHandlerInitializer());
             b.bind(PORT).sync().channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();

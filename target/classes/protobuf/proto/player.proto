@@ -7,12 +7,13 @@ message PBPlayer{
 	required int32 age = 2;
 	
 	required string name = 3;
-	
+
+	//int数组
 	repeated int32 skills = 4;
+
+	optional PBResource resource = 5;
 }
 
 message PBResource{
 	required int64 gold = 1;
-	
-	required int32 energy = 2;
 }

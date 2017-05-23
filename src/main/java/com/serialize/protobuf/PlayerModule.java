@@ -49,16 +49,42 @@ public final class PlayerModule {
     // repeated int32 skills = 4;
     /**
      * <code>repeated int32 skills = 4;</code>
+     *
+     * <pre>
+     *int数组
+     * </pre>
      */
     java.util.List<Integer> getSkillsList();
     /**
      * <code>repeated int32 skills = 4;</code>
+     *
+     * <pre>
+     *int数组
+     * </pre>
      */
     int getSkillsCount();
     /**
      * <code>repeated int32 skills = 4;</code>
+     *
+     * <pre>
+     *int数组
+     * </pre>
      */
     int getSkills(int index);
+
+    // optional .PBResource resource = 5;
+    /**
+     * <code>optional .PBResource resource = 5;</code>
+     */
+    boolean hasResource();
+    /**
+     * <code>optional .PBResource resource = 5;</code>
+     */
+    PBResource getResource();
+    /**
+     * <code>optional .PBResource resource = 5;</code>
+     */
+    PBResourceOrBuilder getResourceOrBuilder();
   }
   /**
    * Protobuf type {@code PBPlayer}
@@ -145,6 +171,19 @@ public final class PlayerModule {
                 skills_.add(input.readInt32());
               }
               input.popLimit(limit);
+              break;
+            }
+            case 42: {
+              PBResource.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000008) == 0x00000008)) {
+                subBuilder = resource_.toBuilder();
+              }
+              resource_ = input.readMessage(PBResource.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(resource_);
+                resource_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000008;
               break;
             }
           }
@@ -270,6 +309,10 @@ public final class PlayerModule {
     private java.util.List<Integer> skills_;
     /**
      * <code>repeated int32 skills = 4;</code>
+     *
+     * <pre>
+     *int数组
+     * </pre>
      */
     public java.util.List<Integer>
         getSkillsList() {
@@ -277,15 +320,45 @@ public final class PlayerModule {
     }
     /**
      * <code>repeated int32 skills = 4;</code>
+     *
+     * <pre>
+     *int数组
+     * </pre>
      */
     public int getSkillsCount() {
       return skills_.size();
     }
     /**
      * <code>repeated int32 skills = 4;</code>
+     *
+     * <pre>
+     *int数组
+     * </pre>
      */
     public int getSkills(int index) {
       return skills_.get(index);
+    }
+
+    // optional .PBResource resource = 5;
+    public static final int RESOURCE_FIELD_NUMBER = 5;
+    private PBResource resource_;
+    /**
+     * <code>optional .PBResource resource = 5;</code>
+     */
+    public boolean hasResource() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional .PBResource resource = 5;</code>
+     */
+    public PBResource getResource() {
+      return resource_;
+    }
+    /**
+     * <code>optional .PBResource resource = 5;</code>
+     */
+    public PBResourceOrBuilder getResourceOrBuilder() {
+      return resource_;
     }
 
     private void initFields() {
@@ -293,6 +366,7 @@ public final class PlayerModule {
       age_ = 0;
       name_ = "";
       skills_ = java.util.Collections.emptyList();
+      resource_ = PBResource.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -310,6 +384,12 @@ public final class PlayerModule {
       if (!hasName()) {
         memoizedIsInitialized = 0;
         return false;
+      }
+      if (hasResource()) {
+        if (!getResource().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
       }
       memoizedIsInitialized = 1;
       return true;
@@ -329,6 +409,9 @@ public final class PlayerModule {
       }
       for (int i = 0; i < skills_.size(); i++) {
         output.writeInt32(4, skills_.get(i));
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeMessage(5, resource_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -359,6 +442,10 @@ public final class PlayerModule {
         }
         size += dataSize;
         size += 1 * getSkillsList().size();
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, resource_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -468,6 +555,7 @@ public final class PlayerModule {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getResourceFieldBuilder();
         }
       }
       private static Builder create() {
@@ -484,6 +572,12 @@ public final class PlayerModule {
         bitField0_ = (bitField0_ & ~0x00000004);
         skills_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000008);
+        if (resourceBuilder_ == null) {
+          resource_ = PBResource.getDefaultInstance();
+        } else {
+          resourceBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -529,6 +623,14 @@ public final class PlayerModule {
           bitField0_ = (bitField0_ & ~0x00000008);
         }
         result.skills_ = skills_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        if (resourceBuilder_ == null) {
+          result.resource_ = resource_;
+        } else {
+          result.resource_ = resourceBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -566,6 +668,9 @@ public final class PlayerModule {
           }
           onChanged();
         }
+        if (other.hasResource()) {
+          mergeResource(other.getResource());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -582,6 +687,12 @@ public final class PlayerModule {
         if (!hasName()) {
           
           return false;
+        }
+        if (hasResource()) {
+          if (!getResource().isInitialized()) {
+            
+            return false;
+          }
         }
         return true;
       }
@@ -755,6 +866,10 @@ public final class PlayerModule {
       }
       /**
        * <code>repeated int32 skills = 4;</code>
+       *
+       * <pre>
+       *int数组
+       * </pre>
        */
       public java.util.List<Integer>
           getSkillsList() {
@@ -762,18 +877,30 @@ public final class PlayerModule {
       }
       /**
        * <code>repeated int32 skills = 4;</code>
+       *
+       * <pre>
+       *int数组
+       * </pre>
        */
       public int getSkillsCount() {
         return skills_.size();
       }
       /**
        * <code>repeated int32 skills = 4;</code>
+       *
+       * <pre>
+       *int数组
+       * </pre>
        */
       public int getSkills(int index) {
         return skills_.get(index);
       }
       /**
        * <code>repeated int32 skills = 4;</code>
+       *
+       * <pre>
+       *int数组
+       * </pre>
        */
       public Builder setSkills(
           int index, int value) {
@@ -784,6 +911,10 @@ public final class PlayerModule {
       }
       /**
        * <code>repeated int32 skills = 4;</code>
+       *
+       * <pre>
+       *int数组
+       * </pre>
        */
       public Builder addSkills(int value) {
         ensureSkillsIsMutable();
@@ -793,6 +924,10 @@ public final class PlayerModule {
       }
       /**
        * <code>repeated int32 skills = 4;</code>
+       *
+       * <pre>
+       *int数组
+       * </pre>
        */
       public Builder addAllSkills(
           Iterable<? extends Integer> values) {
@@ -803,12 +938,133 @@ public final class PlayerModule {
       }
       /**
        * <code>repeated int32 skills = 4;</code>
+       *
+       * <pre>
+       *int数组
+       * </pre>
        */
       public Builder clearSkills() {
         skills_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
+      }
+
+      // optional .PBResource resource = 5;
+      private PBResource resource_ = PBResource.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          PBResource, PBResource.Builder, PBResourceOrBuilder> resourceBuilder_;
+      /**
+       * <code>optional .PBResource resource = 5;</code>
+       */
+      public boolean hasResource() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional .PBResource resource = 5;</code>
+       */
+      public PBResource getResource() {
+        if (resourceBuilder_ == null) {
+          return resource_;
+        } else {
+          return resourceBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .PBResource resource = 5;</code>
+       */
+      public Builder setResource(PBResource value) {
+        if (resourceBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          resource_ = value;
+          onChanged();
+        } else {
+          resourceBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      /**
+       * <code>optional .PBResource resource = 5;</code>
+       */
+      public Builder setResource(
+          PBResource.Builder builderForValue) {
+        if (resourceBuilder_ == null) {
+          resource_ = builderForValue.build();
+          onChanged();
+        } else {
+          resourceBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      /**
+       * <code>optional .PBResource resource = 5;</code>
+       */
+      public Builder mergeResource(PBResource value) {
+        if (resourceBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010) &&
+              resource_ != PBResource.getDefaultInstance()) {
+            resource_ =
+              PBResource.newBuilder(resource_).mergeFrom(value).buildPartial();
+          } else {
+            resource_ = value;
+          }
+          onChanged();
+        } else {
+          resourceBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      /**
+       * <code>optional .PBResource resource = 5;</code>
+       */
+      public Builder clearResource() {
+        if (resourceBuilder_ == null) {
+          resource_ = PBResource.getDefaultInstance();
+          onChanged();
+        } else {
+          resourceBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000010);
+        return this;
+      }
+      /**
+       * <code>optional .PBResource resource = 5;</code>
+       */
+      public PBResource.Builder getResourceBuilder() {
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return getResourceFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .PBResource resource = 5;</code>
+       */
+      public PBResourceOrBuilder getResourceOrBuilder() {
+        if (resourceBuilder_ != null) {
+          return resourceBuilder_.getMessageOrBuilder();
+        } else {
+          return resource_;
+        }
+      }
+      /**
+       * <code>optional .PBResource resource = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          PBResource, PBResource.Builder, PBResourceOrBuilder>
+          getResourceFieldBuilder() {
+        if (resourceBuilder_ == null) {
+          resourceBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              PBResource, PBResource.Builder, PBResourceOrBuilder>(
+                  resource_,
+                  getParentForChildren(),
+                  isClean());
+          resource_ = null;
+        }
+        return resourceBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:PBPlayer)
@@ -834,16 +1090,6 @@ public final class PlayerModule {
      * <code>required int64 gold = 1;</code>
      */
     long getGold();
-
-    // required int32 energy = 2;
-    /**
-     * <code>required int32 energy = 2;</code>
-     */
-    boolean hasEnergy();
-    /**
-     * <code>required int32 energy = 2;</code>
-     */
-    int getEnergy();
   }
   /**
    * Protobuf type {@code PBResource}
@@ -899,11 +1145,6 @@ public final class PlayerModule {
             case 8: {
               bitField0_ |= 0x00000001;
               gold_ = input.readInt64();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              energy_ = input.readInt32();
               break;
             }
           }
@@ -962,25 +1203,8 @@ public final class PlayerModule {
       return gold_;
     }
 
-    // required int32 energy = 2;
-    public static final int ENERGY_FIELD_NUMBER = 2;
-    private int energy_;
-    /**
-     * <code>required int32 energy = 2;</code>
-     */
-    public boolean hasEnergy() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>required int32 energy = 2;</code>
-     */
-    public int getEnergy() {
-      return energy_;
-    }
-
     private void initFields() {
       gold_ = 0L;
-      energy_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -988,10 +1212,6 @@ public final class PlayerModule {
       if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasGold()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasEnergy()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -1005,9 +1225,6 @@ public final class PlayerModule {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeInt64(1, gold_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, energy_);
-      }
       getUnknownFields().writeTo(output);
     }
 
@@ -1020,10 +1237,6 @@ public final class PlayerModule {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(1, gold_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, energy_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1143,8 +1356,6 @@ public final class PlayerModule {
         super.clear();
         gold_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000001);
-        energy_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -1177,10 +1388,6 @@ public final class PlayerModule {
           to_bitField0_ |= 0x00000001;
         }
         result.gold_ = gold_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.energy_ = energy_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1200,19 +1407,12 @@ public final class PlayerModule {
         if (other.hasGold()) {
           setGold(other.getGold());
         }
-        if (other.hasEnergy()) {
-          setEnergy(other.getEnergy());
-        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
         if (!hasGold()) {
-          
-          return false;
-        }
-        if (!hasEnergy()) {
           
           return false;
         }
@@ -1271,39 +1471,6 @@ public final class PlayerModule {
         return this;
       }
 
-      // required int32 energy = 2;
-      private int energy_ ;
-      /**
-       * <code>required int32 energy = 2;</code>
-       */
-      public boolean hasEnergy() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>required int32 energy = 2;</code>
-       */
-      public int getEnergy() {
-        return energy_;
-      }
-      /**
-       * <code>required int32 energy = 2;</code>
-       */
-      public Builder setEnergy(int value) {
-        bitField0_ |= 0x00000002;
-        energy_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required int32 energy = 2;</code>
-       */
-      public Builder clearEnergy() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        energy_ = 0;
-        onChanged();
-        return this;
-      }
-
       // @@protoc_insertion_point(builder_scope:PBResource)
     }
 
@@ -1334,11 +1501,11 @@ public final class PlayerModule {
       descriptor;
   static {
     String[] descriptorData = {
-      "\n\022proto/player.proto\"G\n\010PBPlayer\022\020\n\010play" +
+      "\n\022proto/player.proto\"f\n\010PBPlayer\022\020\n\010play" +
       "erId\030\001 \002(\003\022\013\n\003age\030\002 \002(\005\022\014\n\004name\030\003 \002(\t\022\016\n" +
-      "\006skills\030\004 \003(\005\"*\n\nPBResource\022\014\n\004gold\030\001 \002(" +
-      "\003\022\016\n\006energy\030\002 \002(\005B&\n\026com.serialize.proto" +
-      "bufB\014PlayerModule"
+      "\006skills\030\004 \003(\005\022\035\n\010resource\030\005 \001(\0132\013.PBReso" +
+      "urce\"\032\n\nPBResource\022\014\n\004gold\030\001 \002(\003B&\n\026com." +
+      "serialize.protobufB\014PlayerModule"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1350,13 +1517,13 @@ public final class PlayerModule {
           internal_static_PBPlayer_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PBPlayer_descriptor,
-              new String[] { "PlayerId", "Age", "Name", "Skills", });
+              new String[] { "PlayerId", "Age", "Name", "Skills", "Resource", });
           internal_static_PBResource_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_PBResource_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PBResource_descriptor,
-              new String[] { "Gold", "Energy", });
+              new String[] { "Gold", });
           return null;
         }
       };

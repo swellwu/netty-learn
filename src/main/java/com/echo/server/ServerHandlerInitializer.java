@@ -28,7 +28,7 @@ public class ServerHandlerInitializer extends ChannelInitializer<SocketChannel> 
         pipeline.addLast(DECODER);
         pipeline.addLast(ENCODER);
         //加入空闲会话检测
-        pipeline.addLast(new IdleStateHandler(5,5,5, TimeUnit.SECONDS));
+        pipeline.addLast(new IdleStateHandler(0,5,10, TimeUnit.SECONDS));
         pipeline.addLast(new IdleCheckHandler());
         // and then business logic.
         pipeline.addLast(new EchoServerHandler());

@@ -10,6 +10,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -17,12 +18,32 @@ import java.io.InputStreamReader;
  * Created by wuxinjian on 2017/5/22.
  */
 public class EchoClient {
+
     static final String HOST = "127.0.0.1";
     static final int PORT = 10011;
+    static Bootstrap b = new Bootstrap();
+
+    /**
+     * 超时重连
+     * 3秒重试一次
+     */
+    public static void doConnect() {
+        System.out.println("正在为您重连连接。");
+        b.connect(HOST,PORT).addListener((ChannelFuture f) -> {
+            if (!f.isSuccess()) {
+                System.out.println("连接失败，三秒后重连");
+                long nextRetryDelay = 3;
+                f.channel().eventLoop().schedule( () ->
+                    doConnect(),nextRetryDelay, TimeUnit.SECONDS);
+            }else{
+                System.out.println("连接成功");
+            }
+        });
+    }
+
     public static void main(String[] args) throws Exception {
         EventLoopGroup group = new NioEventLoopGroup();
         try {
-            Bootstrap b = new Bootstrap();
             b.group(group)
                     .option(ChannelOption.TCP_NODELAY,true)
                     .channel(NioSocketChannel.class)

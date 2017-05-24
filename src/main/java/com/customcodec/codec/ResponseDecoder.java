@@ -8,6 +8,8 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 
 import java.util.List;
 
+import static com.customcodec.constant.ConstantValue.REQUEST_LENGTH_LIMIT;
+
 /**
  * 响应解码器
  * <pre>
@@ -31,6 +33,11 @@ public class ResponseDecoder extends ByteToMessageDecoder{
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
         //接受到的数据够长，开始读取
         if(in.readableBytes()>=BASE_LENGTH){
+
+            if(in.readableBytes() > REQUEST_LENGTH_LIMIT){
+                in.skipBytes(in.readableBytes());
+            }
+            
             int beginReader;
             //找报文头
             while(true){

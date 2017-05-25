@@ -1,4 +1,4 @@
-package com.customcodec.codec;
+package com.customcodec.common.codec;
 
 import com.customcodec.constant.ConstantValue;
 import com.customcodec.model.Request;

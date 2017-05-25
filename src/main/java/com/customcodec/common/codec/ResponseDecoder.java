@@ -1,4 +1,4 @@
-package com.customcodec.codec;
+package com.customcodec.common.codec;
 
 import com.customcodec.constant.ConstantValue;
 import com.customcodec.model.Response;
@@ -37,7 +37,7 @@ public class ResponseDecoder extends ByteToMessageDecoder{
             if(in.readableBytes() > REQUEST_LENGTH_LIMIT){
                 in.skipBytes(in.readableBytes());
             }
-            
+
             int beginReader;
             //找报文头
             while(true){

@@ -1,7 +1,7 @@
 package com.customcodec.server;
 
-import com.customcodec.codec.RequestDecoder;
-import com.customcodec.codec.ResponseEncode;
+import com.customcodec.common.codec.RequestDecoder;
+import com.customcodec.common.codec.ResponseEncode;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;

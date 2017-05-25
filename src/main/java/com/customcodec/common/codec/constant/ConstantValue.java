@@ -1,4 +1,4 @@
-package com.customcodec.constant;
+package com.customcodec.common.codec.constant;
 
 /**
  * Created by wuxinjian on 2017/5/24.

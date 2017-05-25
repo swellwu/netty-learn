@@ -1,14 +1,14 @@
 package com.customcodec.common.codec;
 
-import com.customcodec.constant.ConstantValue;
-import com.customcodec.model.Request;
+import com.customcodec.common.codec.constant.ConstantValue;
+import com.customcodec.common.model.Request;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 
 import java.util.List;
 
-import static com.customcodec.constant.ConstantValue.REQUEST_LENGTH_LIMIT;
+import static com.customcodec.common.codec.constant.ConstantValue.REQUEST_LENGTH_LIMIT;
 
 /**
  * 请求解码器

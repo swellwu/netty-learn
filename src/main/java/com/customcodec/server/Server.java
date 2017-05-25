@@ -12,14 +12,16 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by wuxinjian on 2017/5/24.
  */
+@Component
 public class Server {
     static final int PORT = 10011;
 
-    public static void main(String[] args) throws Exception {
+    public void start(){
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
@@ -39,6 +41,8 @@ public class Server {
                         }
                     });
             b.bind(PORT).sync().channel().closeFuture().sync();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();

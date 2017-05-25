@@ -1,4 +1,4 @@
-package com.customcodec.model;
+package com.customcodec.common.model;
 
 /**
  * 请求对象

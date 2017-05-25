@@ -1,7 +1,7 @@
 package com.customcodec.client;
 
-import com.customcodec.model.Request;
-import com.customcodec.model.Response;
+import com.customcodec.common.model.Request;
+import com.customcodec.common.model.Response;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 

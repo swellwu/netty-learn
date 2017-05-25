@@ -1,8 +1,8 @@
 package com.customcodec.server;
 
-import com.customcodec.model.Request;
-import com.customcodec.model.Response;
-import com.customcodec.model.StateCode;
+import com.customcodec.common.model.Request;
+import com.customcodec.common.model.Response;
+import com.customcodec.common.model.ResultCode;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -20,7 +20,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
         Response response = new Response();
         response.setModule(request.getModule());
         response.setCmd(request.getCmd());
-        response.setStateCode(StateCode.SUCCESS);
+        response.setStateCode(ResultCode.SUCCESS);
         //将data+1，然后发回
         Long count = Long.parseLong(new String(request.getData()));
         response.setData(Long.toString(count + 1).getBytes());

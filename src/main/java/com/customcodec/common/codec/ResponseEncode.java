@@ -1,7 +1,7 @@
 package com.customcodec.common.codec;
 
-import com.customcodec.constant.ConstantValue;
-import com.customcodec.model.Response;
+import com.customcodec.common.codec.constant.ConstantValue;
+import com.customcodec.common.model.Response;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;

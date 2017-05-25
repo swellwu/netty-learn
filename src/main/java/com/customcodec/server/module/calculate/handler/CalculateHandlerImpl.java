@@ -5,6 +5,7 @@ import com.customcodec.common.model.Result;
 import com.customcodec.common.module.calculate.CalcalateCmd;
 import com.customcodec.common.module.calculate.CalculateRequest;
 import com.customcodec.common.module.calculate.CalculateResponse;
+import org.springframework.stereotype.Component;
 
 import static com.customcodec.common.model.ResultCode.AGRUMENT_ERROR;
 import static com.customcodec.common.model.ResultCode.UNKOWN_EXCEPTION;
@@ -13,6 +14,7 @@ import static com.customcodec.common.module.calculate.CalcalateCmd.*;
 /**
  * Created by wuxinjian on 2017/5/25.
  */
+@Component
 public class CalculateHandlerImpl implements CalculateHandler {
 
     Result<?> calculate(byte[] data, int operator) {

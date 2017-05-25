@@ -11,6 +11,14 @@ public class CalculateRequest extends Serializer {
 
     double numberTwo;
 
+    public CalculateRequest() {
+    }
+
+    public CalculateRequest(double numberOne, double numberTwo) {
+        this.numberOne = numberOne;
+        this.numberTwo = numberTwo;
+    }
+
     public double getNumberTwo() {
         return numberTwo;
     }

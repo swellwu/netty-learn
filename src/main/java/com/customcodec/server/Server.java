@@ -37,9 +37,10 @@ public class Server {
                             ChannelPipeline pipeline = ch.pipeline();
                             pipeline.addLast(new RequestDecoder());
                             pipeline.addLast(new ResponseEncode());
-                            pipeline.addLast(new ServerHandler());
+                            pipeline.addLast(new NioEventLoopGroup(),new ServerHandler());
                         }
                     });
+            System.out.println("server staring...");
             b.bind(PORT).sync().channel().closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();

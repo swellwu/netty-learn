@@ -2,13 +2,18 @@ package com.customcodec.client;
 
 import com.customcodec.common.codec.RequestEncode;
 import com.customcodec.common.codec.ResponseDecoder;
+import com.customcodec.common.model.Request;
+import com.customcodec.common.module.calculate.CalculateRequest;
 import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+
+import java.util.Scanner;
 
 /**
  * Created by wuxinjian on 2017/5/24.
@@ -35,8 +40,17 @@ public class Client {
                         }
                     });
             // Start the connection attempt.
-            b.connect(HOST, PORT).sync().channel().closeFuture().sync();
-
+            Channel channel = b.connect(HOST, PORT).sync().channel();
+            while(true){
+                Scanner scanner = new Scanner(System.in);
+                int module = scanner.nextInt();
+                int cmd = scanner.nextInt();
+                double numberOne = scanner.nextDouble();
+                double numberTwo = scanner.nextDouble();
+                CalculateRequest calculateRequest = new CalculateRequest(numberOne,numberTwo);
+                Request request = new Request(module,cmd,calculateRequest.getByteArray());
+                channel.writeAndFlush(request);
+            }
         } finally {
             group.shutdownGracefully();
         }
